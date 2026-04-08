@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Company</title>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        p { color: #888; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AI Assistant</h1>
+        <p>Мы автоматизируем ваше будущее. Нажмите на иконку чата справа, чтобы начать общение с нашим ассистентом.</p>
+    </div>
+
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://n8n-production-1073f.up.railway.app/webhook/83c94ac0-251a-4c9b-8f3d-6b674d2aa1c9/chat',
+            showWelcomeScreen: true,
+            title: 'АИ Помощник',
+            welcomeMessage: 'Здравствуйте! Я ваш персональный АИ-ассистент. Чем могу помочь?',
+            theme: {
+                button: {
+                    backgroundColor: '#ffffff',
+                    iconColor: '#000000'
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
