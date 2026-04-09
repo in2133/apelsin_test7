@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Assistant Company</title>
+    
+    <!-- Официальные стили n8n чата -->
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    
     <style>
+        /* Ваши стили сайта + кастомизация цветов виджета */
         body {
             margin: 0;
             padding: 0;
@@ -22,8 +26,29 @@
             max-width: 600px;
             padding: 20px;
         }
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        p { color: #888; font-size: 1.2rem; }
+        h1 { 
+            font-size: 3rem; 
+            margin-bottom: 10px; 
+        }
+        p { 
+            color: #888; 
+            font-size: 1.2rem; 
+        }
+
+        /* Кастомизация самого виджета (меняем цвет кнопки и окна под ваш черный сайт) */
+        :root {
+            --chat--color--primary: #ffffff;
+            --chat--color--dark: #000000;
+            --chat--window--background: #111111;
+            --chat--header--background: #000000;
+            --chat--header--color: #ffffff;
+            --chat--message--bot--background: #1a1a1a;
+            --chat--message--bot--color: #ffffff;
+            --chat--message--user--background: #ffffff;
+            --chat--message--user--color: #000000;
+            --chat--toggle--background: #ffffff;
+            --chat--toggle--color: #000000;
+        }
     </style>
 </head>
 <body>
@@ -33,20 +58,41 @@
         <p>Мы автоматизируем ваше будущее. Нажмите на иконку чата справа, чтобы начать общение с нашим ассистентом.</p>
     </div>
 
+    <!-- Специальный контейнер для встраивания чата (по умолчанию #n8n-chat) -->
+    <div id="n8n-chat"></div>
+
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
         createChat({
+            // Ваш рабочий webhook URL
             webhookUrl: 'https://n8n-production-1073f.up.railway.app/webhook/83c94ac0-251a-4c9b-8f3d-6b674d2aa1c9/chat',
+            
+            // Включаем экран приветствия
             showWelcomeScreen: true,
-            title: 'АИ Помощник',
-            welcomeMessage: 'Здравствуйте! Я ваш персональный АИ-ассистент. Чем могу помочь?',
-            theme: {
-                button: {
-                    backgroundColor: '#ffffff',
-                    iconColor: '#000000'
+            
+            // Первые сообщения, которые видит пользователь
+            initialMessages: [
+                'Здравствуйте! 👋',
+                'Я ваш персональный АИ-ассистент. Чем могу помочь?'
+            ],
+            
+            // Локализация и текст интерфейса
+            i18n: {
+                en: {
+                    title: 'АИ Помощник',
+                    subtitle: 'Мы на связи 24/7',
+                    footer: '',
+                    getStarted: 'Новый диалог',
+                    inputPlaceholder: 'Введите ваше сообщение...',
                 }
-            }
+            },
+            
+            // Режим отображения: 'window' - иконка с выезжающим окном
+            mode: 'window',
+            
+            // Для совместимости оставляем target по умолчанию
+            target: '#n8n-chat',
         });
     </script>
 
