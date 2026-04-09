@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Assistant Company</title>
-    
-    <!-- Официальные стили n8n чата -->
+    <title>n8n Чат (Официальный виджет)</title>
+    <!-- Подключаем стили официального виджета -->
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-    
-    <style>
+
+   <style>
         /* Ваши стили сайта + кастомизация цветов виджета */
         body {
             margin: 0;
@@ -52,49 +51,32 @@
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>AI Assistant</h1>
-        <p>Мы автоматизируем ваше будущее. Нажмите на иконку чата справа, чтобы начать общение с нашим ассистентом.</p>
-    </div>
-
-    <!-- Специальный контейнер для встраивания чата (по умолчанию #n8n-chat) -->
+    <!-- Контейнер, куда встроится чат -->
     <div id="n8n-chat"></div>
 
+    <!-- Подключаем и запускаем виджет -->
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
         createChat({
-            // Ваш рабочий webhook URL
-            webhookUrl: 'https://n8n-production-1073f.up.railway.app/webhook/83c94ac0-251a-4c9b-8f3d-6b674d2aa1c9/chat',
-            
-            // Включаем экран приветствия
-            showWelcomeScreen: true,
-            
-            // Первые сообщения, которые видит пользователь
-            initialMessages: [
-                'Здравствуйте! 👋',
-                'Я ваш персональный АИ-ассистент. Чем могу помочь?'
+            webhookUrl: 'https://n8n-production-1073f.up.railway.app/webhook/b817e11a-4fac-4c8e-99c4-a75789c288b2/chat', // <-- ВАЖНО: Ссылка из Chat Trigger
+            target: '#n8n-chat',        // ID контейнера
+            mode: 'window',             // Режим всплывающего окна
+            showWelcomeScreen: true,    // Показывать экран приветствия
+            initialMessages: [          // Первые сообщения от бота
+                'Привет! 👋',
+                'Я ваш ассистент. Задавайте вопросы.'
             ],
-            
-            // Локализация и текст интерфейса
-            i18n: {
+            i18n: {                     // Перевод интерфейса
                 en: {
-                    title: 'АИ Помощник',
-                    subtitle: 'Мы на связи 24/7',
+                    title: 'Чат с поддержкой',
+                    subtitle: 'Мы онлайн и готовы помочь',
                     footer: '',
                     getStarted: 'Новый диалог',
                     inputPlaceholder: 'Введите ваше сообщение...',
                 }
             },
-            
-            // Режим отображения: 'window' - иконка с выезжающим окном
-            mode: 'window',
-            
-            // Для совместимости оставляем target по умолчанию
-            target: '#n8n-chat',
         });
     </script>
-
 </body>
 </html>
